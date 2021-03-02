@@ -19,9 +19,9 @@ string Format::ElapsedTime(long seconds[[maybe_unused]]) {
   int minutes = seconds/seconds_in_minute;
   seconds -= minutes * seconds_in_minute;
 
-  hours_in_string = std::to_string(hours);
-  minutes_in_string = std::to_string(minutes);
-  seconds_in_string = std::to_string(seconds);
+  std::string hours_in_string = std::to_string(hours);
+  std::string minutes_in_string = std::to_string(minutes);
+  std::string seconds_in_string = std::to_string(seconds);
 
   if(hours_in_string.length() < 2) {
     hours_in_string = "0" + hours_in_string;

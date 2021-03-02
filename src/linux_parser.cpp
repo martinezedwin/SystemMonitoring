@@ -12,11 +12,19 @@ using std::to_string;
 using std::vector;
 
 // DONE: An example of how to read data from the filesystem
+// Definining OperatingSystem() function
 string LinuxParser::OperatingSystem() {
+  // declaring variable line of type string
   string line;
+  // Declaring variable key of type string
   string key;
+  // Declaring variable value of type string
   string value;
+  // Read from a file using ifstream
+  // filestream becomes object
+  // kOSPath is the path of the file to be read
   std::ifstream filestream(kOSPath);
+  // Parse the kOSPatch until you get to the OS Name and return it
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
       std::replace(line.begin(), line.end(), ' ', '_');
@@ -68,7 +76,35 @@ vector<int> LinuxParser::Pids() {
 }
 
 // TODO: Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() { return 0.0; }
+float LinuxParser::MemoryUtilization() { 
+  const std::string kProcDirectory{"/proc/"};
+  const std::string kMeminfoFilename{"/meminfo"};
+  float mem_total, mem_available, buffers, value;
+  float mem_utilization;
+  std::string key;
+  std::string line;
+  std::ifstream stream(kProcDirectory + kMeminfoFilename);
+
+  if (stream.is_open()) {
+    while (std::getline(stream, line)) {
+      std::replace(line.begin(), line.end(), ':', ' ');
+      std::istringstream linestream(line);
+      while (linestream >> key >> value) {
+        if (key == "Buffers") {
+          buffers = value;
+        }
+        if (key == "MemTotal") {
+          mem_total = value;
+        }
+        if (key == "MemAvailable") {
+          mem_available = value;
+        }
+      }
+    }
+    mem_utilization = (1 - (mem_available - buffers)/mem_total);
+  }
+  return mem_utilization;
+}
 
 // TODO: Read and return the system uptime
 long LinuxParser::UpTime() { return 0; }
