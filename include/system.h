@@ -36,13 +36,13 @@ class System {
   // Created - variable kernel_ of type string
   std::string kernel_ = LinuxParser::Kernel();
   // Created - variable memory_utilization_ of type float
-  float memory_utilization_ = {};
+  float memory_utilization_ = LinuxParser::MemoryUtilization();
   // Created - variable operating_system_ of type string
   std::string operating_sytem_ = LinuxParser::OperatingSystem();
   // Created - variable running_processes_ of type int
   int running_processes_ = {};
   // Created - variable total_processes_ of type int
-  int total_processes_ = {};
+  int total_processes_ = LinuxParser::TotalProcesses();
   // Created - variable up_time_ of type long
   long up_time_ = {};
 };

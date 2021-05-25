@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "linux_parser.h"
 
@@ -188,7 +189,23 @@ long LinuxParser::IdleJiffies() { return 0; }
 vector<string> LinuxParser::CpuUtilization() { return {}; }
 
 // TODO: Read and return the total number of processes
-int LinuxParser::TotalProcesses() { return 0; }
+int LinuxParser::TotalProcesses() {
+  int value;
+  std::string key;
+  std::string line;
+  std::ifstream stream("/proc/stat");
+  if (stream.is_open()) {
+    while (std::getline(stream, line)){
+      std::istringstream linestream(line);  
+      while (linestream >> key >>value) {
+        if (key == "processes"){
+         return value;
+        }
+     }
+    } 
+  }
+  return value;
+}
 
 // TODO: Read and return the number of running processes
 int LinuxParser::RunningProcesses() { return 0; }
