@@ -14,7 +14,7 @@ using std::vector;
 // DONE: An example of how to read data from the filesystem
 // Definining OperatingSystem() function
 string LinuxParser::OperatingSystem() {
-  // declaring variable line of type string
+  // Declaring variable line of type string
   string line;
   // Declaring variable key of type string
   string key;

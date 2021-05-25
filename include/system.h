@@ -6,6 +6,7 @@
 
 #include "process.h"
 #include "processor.h"
+#include "linux_parser.h"
 
 class System {
  public:
@@ -33,11 +34,11 @@ class System {
   // variable processes_ of type vector of Process
   std::vector<Process> processes_ = {};
   // Created - variable kernel_ of type string
-  std::string kernel_ = {};
+  std::string kernel_ = LinuxParser::Kernel();
   // Created - variable memory_utilization_ of type float
   float memory_utilization_ = {};
   // Created - variable operating_system_ of type string
-  std::string operating_sytem_ = {};
+  std::string operating_sytem_ = LinuxParser::OperatingSystem();
   // Created - variable running_processes_ of type int
   int running_processes_ = {};
   // Created - variable total_processes_ of type int
