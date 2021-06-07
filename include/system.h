@@ -40,11 +40,11 @@ class System {
   // Created - variable operating_system_ of type string
   std::string operating_sytem_ = LinuxParser::OperatingSystem();
   // Created - variable running_processes_ of type int
-  int running_processes_ = {};
+  int running_processes_ = LinuxParser::RunningProcesses();
   // Created - variable total_processes_ of type int
   int total_processes_ = LinuxParser::TotalProcesses();
   // Created - variable up_time_ of type long
-  long up_time_ = {};
+  long up_time_ = LinuxParser::UpTime();
 };
 
 #endif
