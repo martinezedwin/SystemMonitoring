@@ -30,7 +30,7 @@ class System {
   // TODO: Define any necessary private members
  private:
   // variable cpu_ of type Processor
-  Processor cpu_ = {};
+  Processor cpu_;
   // variable processes_ of type vector of Process
   std::vector<Process> processes_ = {};
   // Created - variable kernel_ of type string

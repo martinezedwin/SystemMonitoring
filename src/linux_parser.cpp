@@ -296,6 +296,65 @@ string LinuxParser::User(int pid) {
   return key;
 }
 
+float LinuxParser::ProcessCpuUtilization(int pid){
+  float process_cpu_utilization;
+  long uptime = LinuxParser::UpTime(); //Replace using parser uptime (maybe not)
+  std::string key;
+  std::string line;
+  std::vector<std::string> proc_pid_stat_items;
+
+  long hertz;
+
+  float utime, stime, cutime, cstime, starttime;
+
+  std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatFilename);
+  if (stream.is_open()) {
+    while (std::getline(stream, line)) {
+      std::istringstream linestream(line);
+      while (linestream >> key) {
+        proc_pid_stat_items.push_back(key);
+      }
+    }
+  }
+
+  utime = std::stof(proc_pid_stat_items[13]);
+  stime = std::stof(proc_pid_stat_items[14]);
+  cutime = std::stof(proc_pid_stat_items[15]);
+  cstime = std::stof(proc_pid_stat_items[16]);
+  starttime = std::stof(proc_pid_stat_items[21]);
+
+  hertz = sysconf(_SC_CLK_TCK);
+
+  float total_time = utime + stime + cutime + cstime;
+
+  float seconds = uptime - (starttime / hertz);
+
+  process_cpu_utilization = 100 * ((total_time / hertz) / seconds);
+
+  return process_cpu_utilization;
+}
+
+float LinuxParser::ProcessMemoryUtilization(int pid){
+  float mem_utilization;
+  std::string key;
+  std::string value;
+  std::string line;
+  std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatusFilename);
+
+  if (stream.is_open()) {
+    while (std::getline(stream, line)) {
+      std::istringstream linestream(line);
+      while (linestream >> key >> value) {
+        if (key == "VmSize:") {
+          mem_utilization = std::stof(value) / 1000;
+          return mem_utilization;
+        }
+      }
+    }
+  }
+  return mem_utilization;
+}
+
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
 long LinuxParser::UpTime(int pid[[maybe_unused]]) { return 0; }
