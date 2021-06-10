@@ -19,7 +19,13 @@ Processor& System::Cpu() { return cpu_; }
 
 // TODO: Return a container composed of the system's processes (Done probably?)
 // Defining the System::Processes() funtion
-vector<Process>& System::Processes() { return processes_; }
+vector<Process>& System::Processes() {
+	for (int pid : LinuxParser::Pids()) {
+		Process process(pid);
+		processes_.push_back(process);
+	}
+	return processes_;
+}
 
 // TODO: Return the system's kernel identifier (string)
 // Returning the kernel_ variable I defined as a private member of System class in system.h
@@ -44,3 +50,17 @@ int System::TotalProcesses() { return total_processes_; }
 // TODO: Return the number of seconds since the system started running
 // Returning the up_time_ variable I defined as a private member of System class in system.h
 long int System::UpTime() { return up_time_; }
+
+
+// void System::UpdateProcesses() {
+//   processes_.clear();
+//   for (int pid : LinuxParser::Pids()) {
+//     UpdateProcess(pid);
+//   }
+//   sort(processes_.begin(), processes_.end());
+// }
+
+// void System::UpdateProcess(int pid) {
+//   Process process(pid);
+//   processes_.emplace_back(process);
+// }

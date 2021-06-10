@@ -45,6 +45,10 @@ class System {
   int total_processes_ = LinuxParser::TotalProcesses();
   // Created - variable up_time_ of type long
   long up_time_ = LinuxParser::UpTime();
+
+  // void UpdateProcess(int pid);
+
+  // void UpdateProcesses();
 };
 
 #endif

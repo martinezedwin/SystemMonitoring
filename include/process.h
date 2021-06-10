@@ -16,8 +16,16 @@ class Process {
   long int UpTime();                       // TODO: See src/process.cpp
   bool operator<(Process const& a) const;  // TODO: See src/process.cpp
 
+  Process(int pid);
+
   // TODO: Declare any necessary private members
  private:
+  int _pid;
+  std::string _user;
+  std::string _command;
+  float _cpuUtilization;
+  std::string _ram;
+  long int _upTime;
 };
 
 #endif
