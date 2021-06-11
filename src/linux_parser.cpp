@@ -278,7 +278,7 @@ string LinuxParser::Ram(int pid) {
       std::istringstream linestream(line);
       while (linestream >> key >> value) {
         if (key == "VmSize:") {
-          mem_utilization = std::to_string(std::stof(value) / 1000);
+          mem_utilization = std::to_string(std::stoi(value) / 1000);
           return mem_utilization;
         }
       }
@@ -364,31 +364,11 @@ float LinuxParser::ProcessCpuUtilization(int pid){
 
   float seconds = uptime - (starttime / hertz);
 
-  process_cpu_utilization = 100 * ((total_time / hertz) / seconds);
+  process_cpu_utilization = ((total_time / hertz) / seconds); // ncurses will times by 100 to get %
 
   return process_cpu_utilization;
 }
 
-// float LinuxParser::ProcessMemoryUtilization(int pid){
-//   float mem_utilization;
-//   std::string key;
-//   std::string value;
-//   std::string line;
-//   std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatusFilename);
-
-//   if (stream.is_open()) {
-//     while (std::getline(stream, line)) {
-//       std::istringstream linestream(line);
-//       while (linestream >> key >> value) {
-//         if (key == "VmSize:") {
-//           mem_utilization = std::to_string(std::stof(value) / 1000);
-//           return mem_utilization;
-//         }
-//       }
-//     }
-//   }
-//   return mem_utilization;
-// }
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function

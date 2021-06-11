@@ -20,10 +20,21 @@ Processor& System::Cpu() { return cpu_; }
 // TODO: Return a container composed of the system's processes (Done probably?)
 // Defining the System::Processes() funtion
 vector<Process>& System::Processes() {
+	// while (true) {
+	// 	processes_.clear();
+	// 	for (int pid : LinuxParser::Pids()) {
+	// 		Process process(pid);
+	// 		processes_.push_back(process);
+	// 	}
+	// 	return processes_;
+	// }
+	processes_.clear();
 	for (int pid : LinuxParser::Pids()) {
 		Process process(pid);
 		processes_.push_back(process);
 	}
+
+	sort(processes_.begin(), processes_.end());
 	return processes_;
 }
 
