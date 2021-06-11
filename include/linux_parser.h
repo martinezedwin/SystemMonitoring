@@ -56,6 +56,6 @@ long int UpTime(int pid);
 float ProcessCpuUtilization(int pid);
 float ProcessMemoryUtilization(int pid);
 
-};  // namespace LinuxParser
+}; // namespace LinuxParser
 
 #endif

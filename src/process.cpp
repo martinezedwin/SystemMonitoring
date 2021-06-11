@@ -1,11 +1,11 @@
-#include <unistd.h>
 #include <cctype>
 #include <sstream>
 #include <string>
+#include <unistd.h>
 #include <vector>
 
-#include "process.h"
 #include "linux_parser.h"
+#include "process.h"
 
 using std::string;
 using std::to_string;
@@ -47,20 +47,18 @@ long int Process::UpTime() { return _upTime; }
 
 // TODO: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
-bool Process::operator<(Process const& a) const {
-	if (_cpuUtilization > a._cpuUtilization)
-	    return true;
-	  else
-	    return false;
+bool Process::operator<(Process const &a) const {
+  if (_cpuUtilization > a._cpuUtilization)
+    return true;
+  else
+    return false;
 }
 
 Process::Process(int pid) {
-	_pid = pid;
-	_cpuUtilization = LinuxParser::ProcessCpuUtilization(_pid);
-	_command = LinuxParser::Command(_pid);
-	_ram = LinuxParser::Ram(_pid);
-	_user = LinuxParser::User(_pid);
-	_upTime = LinuxParser::UpTime(_pid);
+  _pid = pid;
+  _cpuUtilization = LinuxParser::ProcessCpuUtilization(_pid);
+  _command = LinuxParser::Command(_pid);
+  _ram = LinuxParser::Ram(_pid);
+  _user = LinuxParser::User(_pid);
+  _upTime = LinuxParser::UpTime(_pid);
 }
-
-

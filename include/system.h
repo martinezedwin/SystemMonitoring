@@ -4,31 +4,31 @@
 #include <string>
 #include <vector>
 
+#include "linux_parser.h"
 #include "process.h"
 #include "processor.h"
-#include "linux_parser.h"
 
 class System {
- public:
+public:
   // Declaring Cpu() getter function?
-  Processor& Cpu();                   // TODO: See src/system.cpp
+  Processor &Cpu(); // TODO: See src/system.cpp
   // Delcaring Processes() getter function
-  std::vector<Process>& Processes();  // TODO: See src/system.cpp
+  std::vector<Process> &Processes(); // TODO: See src/system.cpp
   // Declaring the MemoryUtilization() function
-  float MemoryUtilization();          // TODO: See src/system.cpp
+  float MemoryUtilization(); // TODO: See src/system.cpp
   // Declaring the UpTime() getter function
-  long UpTime();                      // TODO: See src/system.cpp
+  long UpTime(); // TODO: See src/system.cpp
   // Declaring the TotalProcesses() getter function
-  int TotalProcesses();               // TODO: See src/system.cpp
+  int TotalProcesses(); // TODO: See src/system.cpp
   // Declaring the RunningProcesses() getter function
-  int RunningProcesses();             // TODO: See src/system.cpp
+  int RunningProcesses(); // TODO: See src/system.cpp
   // Declaring the Kernel() getter function
-  std::string Kernel();               // TODO: See src/system.cpp
+  std::string Kernel(); // TODO: See src/system.cpp
   // Declaring the OperatingSystem() getter function
-  std::string OperatingSystem();      // TODO: See src/system.cpp
+  std::string OperatingSystem(); // TODO: See src/system.cpp
 
   // TODO: Define any necessary private members
- private:
+private:
   // variable cpu_ of type Processor
   Processor cpu_;
   // variable processes_ of type vector of Process
