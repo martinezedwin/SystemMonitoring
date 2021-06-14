@@ -121,6 +121,7 @@ long LinuxParser::UpTime() {
     std::getline(stream, line);
     std::istringstream linestream(line);
     linestream >> up_time;
+    return up_time;
   }
   return up_time;
 }
@@ -203,6 +204,7 @@ vector<long> LinuxParser::CpuUtilization() {
       if (key == "cpu") {
         cpu_stats.insert(cpu_stats.end(), {one, two, three, four, five, six,
                                            seven, eight, nine, ten});
+        return cpu_stats;
       }
     }
   }
@@ -260,6 +262,7 @@ string LinuxParser::Command(int pid) {
     while (std::getline(stream, line)) {
       std::istringstream linestream(line);
       while (linestream >> key) {
+        command.clear();
         command.append(key);
         command.append(" ");
       }
@@ -394,6 +397,6 @@ long LinuxParser::UpTime(int pid) {
     }
   }
 
-  uptime = std::stof(proc_pid_stat_items[21]) / sysconf(_SC_CLK_TCK);
+  uptime = (std::stof(proc_pid_stat_items[21]) / sysconf(_SC_CLK_TCK));
   return uptime;
 }
