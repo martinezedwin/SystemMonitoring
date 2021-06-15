@@ -255,13 +255,14 @@ string LinuxParser::Command(int pid) {
   std::string command;
   std::string key;
   std::string line;
-
+  command.clear();
+  
   std::ifstream stream("/proc/" + std::to_string(pid) + "/cmdline");
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
       std::istringstream linestream(line);
       while (linestream >> key) {
-        command.clear();
+        
         command.append(key);
         command.append(" ");
       }
@@ -343,7 +344,7 @@ float LinuxParser::ProcessCpuUtilization(int pid) {
                                        // not)
   std::string key;
   std::string line;
-  std::vector<std::string> proc_pid_stat_items;
+  std::vector<std::string> proc_pid_stat_items = {};
 
   long hertz;
 
