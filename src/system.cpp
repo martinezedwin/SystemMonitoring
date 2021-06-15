@@ -41,32 +41,32 @@ vector<Process> &System::Processes() {
 // TODO: Return the system's kernel identifier (string)
 // Returning the kernel_ variable I defined as a private member of System class
 // in system.h
-std::string System::Kernel() { return kernel_; }
+std::string System::Kernel() { return LinuxParser::Kernel(); }
 
 // TODO: Return the system's memory utilization
 // Returning the memory_utilization_ variable I defined as a private member of
 // System class in system.h
-float System::MemoryUtilization() { return memory_utilization_; }
+float System::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }
 
 // TODO: Return the operating system name
 // Returning the operating_sytem_ variable I defined as a private member of
 // System class in system.h
-std::string System::OperatingSystem() { return operating_sytem_; }
+std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }
 
 // TODO: Return the number of processes actively running on the system
 // Returning the running_processes_ variable I defined as a private member of
 // System class in system.h
-int System::RunningProcesses() { return running_processes_; }
+int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
 
 // TODO: Return the total number of processes on the system
 // Returning the total_processes_ variable I defined as a private member of
 // System class in system.h
-int System::TotalProcesses() { return total_processes_; }
+int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 // TODO: Return the number of seconds since the system started running
 // Returning the up_time_ variable I defined as a private member of System class
 // in system.h
-long int System::UpTime() { return up_time_; }
+long int System::UpTime() { return LinuxParser::UpTime(); }
 
 // void System::UpdateProcesses() {
 //   processes_.clear();

@@ -44,11 +44,7 @@ private:
   // Created - variable total_processes_ of type int
   int total_processes_ = LinuxParser::TotalProcesses();
   // Created - variable up_time_ of type long
-  long up_time_ = LinuxParser::UpTime();
-
-  // void UpdateProcess(int pid);
-
-  // void UpdateProcesses();
+  long int up_time_ = LinuxParser::UpTime();
 };
 
 #endif

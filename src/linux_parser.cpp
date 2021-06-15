@@ -381,6 +381,7 @@ float LinuxParser::ProcessCpuUtilization(int pid) {
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
 long LinuxParser::UpTime(int pid) {
+  long system_uptime = LinuxParser::UpTime();
   long uptime;
   std::string key;
   std::string value;
@@ -397,6 +398,6 @@ long LinuxParser::UpTime(int pid) {
     }
   }
 
-  uptime = (std::stof(proc_pid_stat_items[21]) / sysconf(_SC_CLK_TCK));
+  uptime = std::stof(proc_pid_stat_items[21]) / sysconf(_SC_CLK_TCK);
   return uptime;
 }
