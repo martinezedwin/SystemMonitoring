@@ -256,7 +256,7 @@ string LinuxParser::Command(int pid) {
   std::string key;
   std::string line;
   command.clear();
-  
+
   std::ifstream stream("/proc/" + std::to_string(pid) + "/cmdline");
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -275,6 +275,7 @@ string LinuxParser::Command(int pid) {
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Ram(int pid) {
   string mem_utilization;
+  mem_utilization.clear();
   std::string key;
   std::string value;
   std::string line;
