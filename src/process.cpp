@@ -30,19 +30,19 @@ int Process::Pid() { return _pid; }
 // long int Process::UpTime() { return 0; }
 
 //-----------------------------------------------------------------------------------
-float Process::CpuUtilization() { return _cpuUtilization; }
+float Process::CpuUtilization() { return LinuxParser::ProcessCpuUtilization(_pid); /*_cpuUtilization;*/ }
 
 // TODO: Return the command that generated this process
-string Process::Command() { return _command; }
+string Process::Command() { return LinuxParser::Command(_pid); /*_command;*/ }
 
 // TODO: Return this process's memory utilization
-string Process::Ram() { return _ram; }
+string Process::Ram() { return LinuxParser::Ram(_pid); /*_ram;*/ }
 
 // TODO: Return the user (name) that generated this process
-string Process::User() { return _user; }
+string Process::User() { return LinuxParser::User(_pid); /*_user;*/ }
 
 // TODO: Return the age of this process (in seconds)
-long int Process::UpTime() { return _upTime; }
+long int Process::UpTime() { return LinuxParser::UpTime(_pid); /*_upTime;*/ }
 //-----------------------------------------------------------------------------------
 
 // TODO: Overload the "less than" comparison operator for Process objects
@@ -57,8 +57,8 @@ bool Process::operator<(Process const &a) const {
 Process::Process(int pid) {
   _pid = pid;
   _cpuUtilization = LinuxParser::ProcessCpuUtilization(_pid);
-  _command = LinuxParser::Command(_pid);
-  _ram = LinuxParser::Ram(_pid);
-  _user = LinuxParser::User(_pid);
-  _upTime = LinuxParser::UpTime(_pid);
+  // _command = LinuxParser::Command(_pid);
+  // _ram = LinuxParser::Ram(_pid);
+  // _user = LinuxParser::User(_pid);
+  // _upTime = LinuxParser::UpTime(_pid);
 }

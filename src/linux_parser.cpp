@@ -208,7 +208,6 @@ vector<long> LinuxParser::CpuUtilization() {
       }
     }
   }
-
   return cpu_stats;
 }
 
@@ -386,7 +385,7 @@ long LinuxParser::UpTime(int pid) {
   std::string key;
   std::string value;
   std::string line;
-  std::vector<std::string> proc_pid_stat_items;
+  std::vector<std::string> proc_pid_stat_items = {};
 
   std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatFilename);
   if (stream.is_open()) {
@@ -398,6 +397,6 @@ long LinuxParser::UpTime(int pid) {
     }
   }
 
-  uptime = std::stof(proc_pid_stat_items[21]) / sysconf(_SC_CLK_TCK);
+  uptime = system_uptime - (std::stof(proc_pid_stat_items[21]) / sysconf(_SC_CLK_TCK));
   return uptime;
 }

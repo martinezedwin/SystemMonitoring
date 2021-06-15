@@ -21,11 +21,11 @@ public:
   // TODO: Declare any necessary private members
 private:
   int _pid;
-  std::string _user;
-  std::string _command;
+  // std::string _user;
+  // std::string _command;
   float _cpuUtilization;
-  std::string _ram;
-  long int _upTime;
+  // std::string _ram;
+  // long int _upTime;
 };
 
 #endif
